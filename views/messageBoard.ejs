@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+</head>
+<body>    
+    <%if(messages.length > 0){%>
+        <%for(let i = 0; i < messages.length; i++){%>
+            <%const now = messages[i].added%>
+            <%const dateFormatted = now.toISOString().split('T')[0]%>
+            <%const time = now.getHours() + ":" + now.getMinutes()%>
+            <div>
+                <span name="username"><%=messages[i].user%></span>
+                <p name="textMsg"><%=messages[i].text%></p>
+                <span><%=dateFormatted%> <%=time%></span>
+                <a href=<%=`/${i}`%>><button>Open</button></a>
+            </div>
+        <%}%>
+    <%}%>
+    <%if(msgIndex >= 0){%>
+        <a href="/"><button>Back</button></a>        
+    <%}else{%>    
+        <a href="/new"><button>New</button></a>    
+    <%}%>    
+</body>
+</html>
